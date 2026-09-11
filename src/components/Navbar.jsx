@@ -37,8 +37,8 @@ export default function Navbar() {
         <GooeyNav
           items={items}
           particleCount={15}
-          particleDistances={[90, 10]}
-          particleR={100}
+          particleDistances={[100, 10]}
+          particleR={90}
           initialActiveIndex={0}
           animationTime={600}
           timeVariance={300}

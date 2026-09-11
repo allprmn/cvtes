@@ -32,11 +32,10 @@
 }
 
 .greeting {
-  font-size: 3rem;
+  font-size: 1.5rem;
   color: #A78BFA;
   font-weight: 600;
   margin-bottom: 0.5rem;
-
 }
 
 .strokeWrapper {
