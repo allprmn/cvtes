@@ -1,0 +1,113 @@
+.heroContent {
+  position: relative;
+  z-index: 10;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 6rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  color: #F8FAFC;
+}
+
+@media (min-width: 768px) {
+  .heroContent {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+    padding: 8rem 2rem;
+  }
+}
+
+.textWrapper {
+  flex: 1;
+  max-width: 650px;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+
+.greeting {
+  font-size: 3rem;
+  color: #A78BFA;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+
+}
+
+.strokeWrapper {
+  display: block;
+  min-height: 80px; /* Memberi ruang untuk animasi StrokeText */
+}
+
+.description {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: #CBD5E1;
+  margin-bottom: 2.5rem;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.cta {
+  padding: 0.8rem 1.8rem;
+  background-color: #7C3AED;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.ctaSecondary {
+  padding: 0.8rem 1.8rem;
+  background-color: transparent;
+  color: #A78BFA;
+  border: 2px solid #A78BFA;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.avatarWrapper {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .avatarWrapper {
+    width: 380px;
+    height: 380px;
+  }
+}
+
+.avatarBorder {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  padding: 6px;
+  background: linear-gradient(135deg, #7C3AED, #A78BFA);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatarImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #0F172A; /* Sesuaikan dengan warna background gelap */
+}
