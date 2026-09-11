@@ -32,15 +32,26 @@
 }
 
 .greeting {
-  font-size: 1.5rem;
-  color: #A78BFA;
+  font-size: clamp(1.5rem, 6vw, 2.5rem);
+  color: #cbd5e1;
   font-weight: 600;
-  margin-bottom: 0.5rem;
 }
 
 .strokeWrapper {
-  display: block;
-  min-height: 80px; /* Memberi ruang untuk animasi StrokeText */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  line-height: 1;
+  overflow: hidden;
+}
+
+/* Pastikan SVG StrokeText tidak overflow di layar kecil */
+.strokeWrapper svg {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
 }
 
 .description {
@@ -77,36 +88,74 @@
   display: inline-block;
 }
 
+/* =========================================
+   BAGIAN FOTO PROFIL (KARTU PORTRAIT)
+   ========================================= */
+
 .avatarWrapper {
   position: relative;
-  width: 280px;
-  height: 280px;
-  border-radius: 50%;
-  flex-shrink: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  margin: 0 auto;
+  border-radius: 24px;
+  overflow: hidden;
 }
 
 @media (min-width: 768px) {
   .avatarWrapper {
-    width: 380px;
+    width: 320px;
     height: 380px;
   }
 }
 
 .avatarBorder {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  padding: 6px;
-  background: linear-gradient(135deg, #7C3AED, #A78BFA);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 4px;
+  border-radius: 24px; /* Sudut melengkung, bukan bulat */
+  background: linear-gradient(45deg, #10b981, #3b82f6, #a855f7, #10b981);
+  background-size: 200% 200%;
+  animation: gradientMove 4s ease infinite, framePulse 3s ease-in-out infinite;
 }
 
 .avatarImage {
-  width: 100%;
-  height: 100%;
+  display: block;
+  width: clamp(180px, 55vw, 260px);   /* Responsif */
+  height: auto;                        /* Jaga rasio */
+  aspect-ratio: 260 / 340;             /* Konsisten portrait */
+  border-radius: 20px;                 /* Mengikuti lengkungan border */
   object-fit: cover;
-  border-radius: 50%;
-  border: 4px solid #0F172A; /* Sesuaikan dengan warna background gelap */
+  background-color: #1e293b;
+}
+
+/* =========================================
+   ANIMASI (WAJIB ADA)
+   ========================================= */
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes framePulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.2);
+  }
+  50% {
+    transform: scale(1.03);
+    box-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.2);
+  }
 }
