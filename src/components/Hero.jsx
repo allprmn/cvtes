@@ -8,7 +8,7 @@ import styles from './Hero.module.css'
 export default function Hero() {
   return (
     <header style={{ position: 'relative', overflow: 'hidden', minHeight: '100dvh', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#0F172A', paddingTop: '4rem', paddingBottom: '2rem' }}>
-      
+
       <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
         <MoltenMetal
           color1="#6655a9"
@@ -36,7 +36,7 @@ export default function Hero() {
       <div className={styles.heroContent}>
 
         {/* Sisi Kiri: Teks & Tombol */}
-        <motion.div 
+        <motion.div
           className={styles.textWrapper}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -73,20 +73,26 @@ export default function Hero() {
 
           <div className={styles.buttons}>
             <motion.a
-              href="#"
+              href="/cv.pdf"
+              download="/cv.pdf"
               className={styles.cta}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={(e) => {
+                if (!window.confirm("Apakah kamu yakin ingin mengunduh CV saya?")) {
+                  e.preventDefault(); // Batalkan download jika user klik "Cancel"
+                }
+              }}
             >
               Download CV
             </motion.a>
             <motion.a
-              href="#projects"
+              href="#certificates"
               className={styles.ctaSecondary}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Lihat Proyek
+              Lihat Sertifikat
             </motion.a>
           </div>
         </motion.div>
