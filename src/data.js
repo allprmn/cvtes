@@ -2,65 +2,6 @@
 
 
 
-export const projects = [
-  {
-    id: 1,
-    title: "Aplikasi Cuaca",
-    description: "Aplikasi cuaca real-time dengan OpenWeather API.",
-    tech: ["React", "Axios", "CSS"],
-    image: "https://via.placeholder.com/400x300?text=Todo",
-    link: "https://github.com/username/weather-app",
-    detail: "Aplikasi ini menampilkan cuaca terkini berdasarkan lokasi pengguna. Dibangun dengan React dan menggunakan API OpenWeather untuk mengambil data. Fitur: pencarian kota, tampilan 5 hari ke depan, dan grafik suhu."
-  },
-  {
-    id: 2,
-    title: "Todo List",
-    description: "Aplikasi manajemen tugas dengan drag-and-drop.",
-    tech: ["React", "DnD", "Tailwind"],
-    image: "https://via.placeholder.com/400x300?text=Todo",
-    link: "https://github.com/username/todo-app",
-    detail: "Todo list dengan fitur drag-and-drop untuk mengurutkan prioritas. Data disimpan di localStorage. Dibangun dengan React dan Tailwind CSS."
-  },
-  {
-    id: 3,
-    title: "Portfolio Saya",
-    description: "Website portfolio ini sendiri.",
-    tech: ["React", "Framer Motion", "CSS Modules"],
-    image: "https://via.placeholder.com/400x300?text=Portfolio",
-    link: "https://github.com/username/portfolio",
-    detail: "Portfolio interaktif dengan animasi halus dan desain dark mode. Menggunakan React Router untuk navigasi dan Framer Motion untuk efek transisi."
-  }
-];
-
-// data sertifikat
-import cert1 from './assets/images/certificate-1.jpg';
-export const certificates = [
-  {
-    id: 1,
-    title: "Sertifikat React Dasar",
-    issuer: "Dicoding",
-    date: "Januari 2024",
-    image: cert1,
-    detail: "Sertifikat kelulusan kursus React Dasar dari Dicoding. Materi: state, props, hooks, dan routing."
-  },
-  {
-    id: 2,
-    title: "Sertifikat JavaScript ES6",
-    issuer: "FreeCodeCamp",
-    date: "Desember 2023",
-    image: "https://via.placeholder.com/300x200?text=JS",
-    detail: "Sertifikat penyelesaian kursus JavaScript ES6 dari FreeCodeCamp. Topik: arrow functions, destructuring, spread, dan classes."
-  },
-  {
-    id: 3,
-    title: "Sertifikat UI/UX Design",
-    issuer: "Google",
-    date: "November 2023",
-    image: "https://via.placeholder.com/300x200?text=UIUX",
-    detail: "Sertifikat dari Google tentang prinsip desain UI/UX, prototyping, dan usability testing."
-  }
-];
-
 // data riwayat pendidikan
 export const education = [
   {
@@ -96,3 +37,43 @@ export const education = [
     icon: "💻"
   }
 ];
+
+
+// Certifikat
+import cert1 from './assets/certificates/cert-1.jpg';
+import cert2 from './assets/certificates/cert-2.jpg';
+import cert3 from './assets/certificates/cert-3.jpg';
+
+export const certificates = [
+  {
+    id: 1,
+    title: "Higher Education - University Student",
+    issuer: "Google For Education",
+    date: "September 2026",
+    image: cert1,
+    alt: "Sertifikat Higher Education - University Student dari Google For Education",
+    link: "hhttps://drive.google.com/file/d/1Jgp8TScpVdP6MnzeqMYnMP5RBAJ5dQlT/view",
+    detail: "Sertifikat kelulusan kursus React Dasar dari Dicoding. Materi: state, props, hooks, dan routing."
+  },
+  {
+    id: 2,
+    title: "Belajar Membuat Aplikasi Web dengan React",
+    issuer: "Dicodibg Camp",
+    date: "Agust 2026",
+    image: cert2,
+    alt: "Sertifikat Belajar Membuat Aplikasi Web dengan React dari Dicoding Camp",
+    link: "https://www.dicoding.com/certificates/98XW8R6R9PM3",
+    detail: "Sertifikat penyelesaian kursus React Dasar dari Dicoding. Materi: Belajar tentang membangun UI di React seperti mengenal element dan component. Serta, belajar juga konsep component properti yang membuat UI aplikasi bersifat reusable"
+  },
+  {
+    id: 3,
+    title: "Siswa Tersertifikasi Gemini",
+    issuer: "Google",
+    date: "Agust 2026",
+    image: cert3,
+    alt: "Sertifikat Siswa Tersertifikasi Gemini dari Google",
+    link: "https://edu.google.accredible.com/60a3e746-b668-44a7-936e-3b50649f78bb#acc.I7D9ihMV",
+    detail: "Mahasiswa Gemini University yang tersertifikasi Google dapat mengartikulasikan dan menunjukkan pengetahuan dasar tentang konsep Ai generatif serta fitur dan kemampuan inti Gemini dalam konteks pendidikan. Individu yang telah meraih sertifikasi ini dapat menunjukkan Status mereka dengan sertifikat dan lencana yang dipersonalisasi. Sertifikasi ini berlaku selama 3 tahun."
+  }
+];
+
