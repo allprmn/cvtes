@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 
 // Data jadwal mata kuliah kamu
 const mataKuliah = [
@@ -13,60 +13,169 @@ const mataKuliah = [
 ]
 
 export default function About() {
+  const scrollRef = useRef(null)
+  const [canScrollLeft, setCanScrollLeft] = useState(false)
+  const [canScrollRight, setCanScrollRight] = useState(true)
+
+  // Fungsi untuk cek posisi scroll dan update tombol panah
+  const checkScroll = () => {
+    const el = scrollRef.current
+    if (!el) return
+    setCanScrollLeft(el.scrollLeft > 0)
+    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 1)
+  }
+
+  useEffect(() => {
+    checkScroll()
+    const el = scrollRef.current
+    if (el) {
+      el.addEventListener('scroll', checkScroll)
+      window.addEventListener('resize', checkScroll)
+    }
+    return () => {
+      if (el) el.removeEventListener('scroll', checkScroll)
+      window.removeEventListener('resize', checkScroll)
+    }
+  }, [])
+
+  const scrollByAmount = (direction) => {
+    const el = scrollRef.current
+    if (!el) return
+    const amount = el.clientWidth * 0.7 // 70% dari lebar container
+    el.scrollBy({ left: direction * amount, behavior: 'smooth' })
+  }
+
   return (
     <section id="about" className="w-full py-20 px-4 md:px-10 bg-slate-900 text-slate-200">
       <div className="max-w-6xl mx-auto">
-        
+
         {/* Bio Singkat */}
         <h2 className="text-3xl font-bold text-white mb-6">Tentang Saya</h2>
         <p className="text-lg text-slate-400 leading-relaxed max-w-3xl mb-12">
-          Saya adalah seorang pengembang aplikasi dan web yang berfokus pada desain mobile, 
-          performa tinggi, dan kolaborasi teknologi terkini. Berpengalaman membangun 
+          Saya adalah seorang pengembang aplikasi dan web yang berfokus pada desain mobile,
+          performa tinggi, dan kolaborasi teknologi terkini. Berpengalaman membangun
           aplikasi mobile, website interaktif, serta mengintegrasikan teknologi digital.
         </p>
 
-        {/* Judul Tabel */}
-        <h3 className="text-2xl font-semibold text-white mb-6">Jadwal Mata Kuliah Semester Ini</h3>
-        
-        {/* Container Tabel dengan Scroll Horizontal untuk Layar Kecil */}
-        <div className="w-full overflow-x-auto rounded-xl border border-slate-700 bg-slate-800">
-          <table className="w-full text-left text-sm whitespace-nowrap">
-            {/* Header Tabel */}
-            <thead className="bg-slate-700 text-slate-300 uppercase text-xs font-semibold tracking-wider">
-              <tr>
-                <th className="px-6 py-4">No</th>
-                <th className="px-6 py-4">Matakuliah</th>
-                <th className="px-6 py-4">Kelas</th>
-                <th className="px-6 py-4 text-center">SKS</th>
-                <th className="px-6 py-4">Ruang</th>
-                <th className="px-6 py-4">Hari</th>
-                <th className="px-6 py-4">Waktu</th>
-                <th className="px-6 py-4">Dosen</th>
-              </tr>
-            </thead>
-            
-            {/* Isi Tabel */}
-            <tbody className="divide-y divide-slate-700">
-              {mataKuliah.map((item, index) => (
-                <tr 
-                  key={item.no} 
-                  className={`transition-colors hover:bg-slate-700/50 ${index % 2 === 0 ? 'bg-slate-800' : 'bg-slate-800/50'}`}
-                >
-                  <td className="px-6 py-4 text-slate-300">{item.no}</td>
-                  <td className="px-6 py-4 font-medium text-white">{item.nama}</td>
-                  <td className="px-6 py-4 text-slate-300">{item.kelas}</td>
-                  <td className="px-6 py-4 text-center text-slate-300">{item.sks}</td>
-                  <td className="px-6 py-4 text-slate-300">{item.ruang}</td>
-                  <td className="px-6 py-4 text-slate-300">{item.hari}</td>
-                  <td className="px-6 py-4 text-slate-300">{item.waktu}</td>
-                  <td className="px-6 py-4 text-slate-400">{item.dosen}</td>
+        {/* Judul Tabel + Tombol Panah */}
+        <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
+          <div>
+            <h3 className="text-2xl font-semibold text-white">Jadwal Mata Kuliah Semester Ini</h3>
+            <p className="text-xs text-slate-500 mt-1 md:hidden">
+              Geser tabel atau klik tombol panah →
+            </p>
+          </div>
+
+          {/* Tombol Panah (hanya tampil di mobile & tablet) */}
+          <div className="flex gap-2 lg:hidden">
+            <button
+              onClick={() => scrollByAmount(-1)}
+              disabled={!canScrollLeft}
+              aria-label="Geser ke kiri"
+              className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all ${
+                canScrollLeft
+                  ? 'bg-slate-700 border-slate-600 text-white hover:bg-slate-600 cursor-pointer'
+                  : 'bg-slate-800/50 border-slate-800 text-slate-600 cursor-not-allowed'
+              }`}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+            <button
+              onClick={() => scrollByAmount(1)}
+              disabled={!canScrollRight}
+              aria-label="Geser ke kanan"
+              className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all ${
+                canScrollRight
+                  ? 'bg-indigo-600 border-indigo-500 text-white hover:bg-indigo-700 cursor-pointer'
+                  : 'bg-slate-800/50 border-slate-800 text-slate-600 cursor-not-allowed'
+              }`}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        {/* Container Tabel dengan Scroll Horizontal */}
+        <div className="relative">
+          {/* Gradient Fade Kiri (hanya muncul saat bisa scroll kiri) */}
+          {canScrollLeft && (
+            <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-slate-900 to-transparent z-10" />
+          )}
+          {/* Gradient Fade Kanan (hanya muncul saat bisa scroll kanan) */}
+          {canScrollRight && (
+            <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-slate-900 to-transparent z-10" />
+          )}
+
+          <div
+            ref={scrollRef}
+            className="w-full overflow-x-auto rounded-xl border border-slate-700 bg-slate-800 custom-scrollbar"
+          >
+            <table className="min-w-[900px] text-left text-sm whitespace-nowrap">
+              {/* Header Tabel */}
+              <thead className="bg-slate-700 text-slate-300 uppercase text-xs font-semibold tracking-wider">
+                <tr>
+                  <th className="px-6 py-4">No</th>
+                  <th className="px-6 py-4">Matakuliah</th>
+                  <th className="px-6 py-4">Kelas</th>
+                  <th className="px-6 py-4 text-center">SKS</th>
+                  <th className="px-6 py-4">Ruang</th>
+                  <th className="px-6 py-4">Hari</th>
+                  <th className="px-6 py-4">Waktu</th>
+                  <th className="px-6 py-4">Dosen</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+
+              {/* Isi Tabel */}
+              <tbody className="divide-y divide-slate-700">
+                {mataKuliah.map((item, index) => (
+                  <tr
+                    key={item.no}
+                    className={`transition-colors hover:bg-slate-700/50 ${index % 2 === 0 ? 'bg-slate-800' : 'bg-slate-800/50'}`}
+                  >
+                    <td className="px-6 py-4 text-slate-300">{item.no}</td>
+                    <td className="px-6 py-4 font-medium text-white">{item.nama}</td>
+                    <td className="px-6 py-4 text-slate-300">{item.kelas}</td>
+                    <td className="px-6 py-4 text-center text-slate-300">{item.sks}</td>
+                    <td className="px-6 py-4 text-slate-300">{item.ruang}</td>
+                    <td className="px-6 py-4 text-slate-300">{item.hari}</td>
+                    <td className="px-6 py-4 text-slate-300">{item.waktu}</td>
+                    <td className="px-6 py-4 text-slate-400">{item.dosen}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
 
       </div>
+
+      {/* CSS Custom untuk Scrollbar */}
+      <style>{`
+        .custom-scrollbar::-webkit-scrollbar {
+          height: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: #1e293b;
+          border-radius: 0 0 12px 12px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: #7C3AED;
+          border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: #6D28D9;
+        }
+        /* Firefox */
+        .custom-scrollbar {
+          scrollbar-width: thin;
+          scrollbar-color: #7C3AED #1e293b;
+          -webkit-overflow-scrolling: touch;
+        }
+      `}</style>
     </section>
   )
 }

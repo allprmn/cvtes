@@ -7,7 +7,7 @@ import styles from './Hero.module.css'
 
 export default function Hero() {
   return (
-    <header style={{ position: 'relative', overflow: 'hidden', minHeight: '100vh', display: 'flex', alignItems: 'center', backgroundColor: '#0F172A' }}>
+    <header style={{ position: 'relative', overflow: 'hidden', minHeight: '100dvh', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#0F172A', paddingTop: '4rem', paddingBottom: '2rem' }}>
       
       <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
         <MoltenMetal

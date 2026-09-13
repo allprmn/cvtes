@@ -3,12 +3,14 @@
   z-index: 10;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 6rem 2rem;
+  padding: 2rem 1.25rem 3rem; /* Mobile: padding dikecilkan */
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3rem;
+  text-align: center;
+  gap: 2rem; /* Mobile: gap dikecilkan dari 3rem */
   color: #F8FAFC;
+  width: 100%;
 }
 
 @media (min-width: 768px) {
@@ -16,69 +18,97 @@
     flex-direction: row;
     justify-content: space-between;
     text-align: left;
-    padding: 8rem 2rem;
+    padding: 8rem 2rem 4rem;
+    gap: 3rem;
   }
 }
 
 .textWrapper {
   flex: 1;
   max-width: 650px;
+  width: 100%;
 }
 
 .titleContainer {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;      /* <-- Ubah dari column ke row */
+  align-items: center;      /* Sejajarkan vertikal di tengah */
+  justify-content: flex-start;
+  gap: 0.75rem;             /* Jarak antara "Hi I'm" dan nama */
+  flex-wrap: wrap;          /* Biar turun ke baris baru kalau layar sempit */
   margin-bottom: 1.5rem;
 }
 
 .greeting {
-  font-size: clamp(1.5rem, 6vw, 2.5rem);
+  font-size: clamp(1.1rem, 5vw, 2.5rem);
   color: #cbd5e1;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .strokeWrapper {
   display: inline-flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  width: 100%;
-  max-width: 100%;
+  flex: 1;                  /* Ambil sisa ruang */
+  min-width: 0;             /* Biar SVG bisa menyusut */
   line-height: 1;
   overflow: hidden;
 }
 
-/* Pastikan SVG StrokeText tidak overflow di layar kecil */
 .strokeWrapper svg {
   width: 100%;
   max-width: 100%;
   height: auto;
+  display: block;
+}
+
+@media (max-width: 767px) {
+  .titleContainer {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  
+  .strokeWrapper {
+    justify-content: center;
+    width: 100%;
+  }
 }
 
 .description {
-  font-size: 1.125rem;
-  line-height: 1.7;
+  font-size: clamp(0.9rem, 3.5vw, 1.125rem); /* Mobile: font mengecil */
+  line-height: 1.6;
   color: #CBD5E1;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
 }
 
 .buttons {
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
   flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .buttons {
+    justify-content: flex-start;
+  }
 }
 
 .cta {
-  padding: 0.8rem 1.8rem;
+  padding: 0.7rem 1.4rem;
   background-color: #7C3AED;
   color: white;
   border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
   display: inline-block;
+  font-size: 0.95rem;
 }
 
 .ctaSecondary {
-  padding: 0.8rem 1.8rem;
+  padding: 0.7rem 1.4rem;
   background-color: transparent;
   color: #A78BFA;
   border: 2px solid #A78BFA;
@@ -86,6 +116,7 @@
   text-decoration: none;
   font-weight: 600;
   display: inline-block;
+  font-size: 0.95rem;
 }
 
 /* =========================================
@@ -102,18 +133,20 @@
   margin: 0 auto;
   border-radius: 24px;
   overflow: hidden;
+  max-width: 220px; /* Mobile: batasi lebar */
 }
 
 @media (min-width: 768px) {
   .avatarWrapper {
     width: 320px;
     height: 380px;
+    max-width: none;
   }
 }
 
 .avatarBorder {
   padding: 4px;
-  border-radius: 24px; /* Sudut melengkung, bukan bulat */
+  border-radius: 24px;
   background: linear-gradient(45deg, #10b981, #3b82f6, #a855f7, #10b981);
   background-size: 200% 200%;
   animation: gradientMove 4s ease infinite, framePulse 3s ease-in-out infinite;
@@ -121,16 +154,24 @@
 
 .avatarImage {
   display: block;
-  width: clamp(180px, 55vw, 260px);   /* Responsif */
-  height: auto;                        /* Jaga rasio */
-  aspect-ratio: 260 / 340;             /* Konsisten portrait */
-  border-radius: 20px;                 /* Mengikuti lengkungan border */
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  aspect-ratio: 260 / 340;
+  border-radius: 20px;
   object-fit: cover;
   background-color: #1e293b;
 }
 
+@media (min-width: 768px) {
+  .avatarImage {
+    max-width: 100%;
+    width: clamp(180px, 55vw, 260px);
+  }
+}
+
 /* =========================================
-   ANIMASI (WAJIB ADA)
+   ANIMASI
    ========================================= */
 
 @keyframes gradientMove {

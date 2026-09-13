@@ -1,50 +1,50 @@
-import React from 'react'
-import GooeyNav from './GooeyNav' // Sesuaikan path jika file ada di folder 'ui'
+import React from 'react';
+import CardNav from './CardNav';
 
-// Menu navigasi
 const items = [
-  { label: "Home", href: "#" },
-  { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
-  { label: "Contact", href: "#contact" },
+  {
+    label: "About",
+    bgColor: "#1B1722",
+    textColor: "#fff",
+    links: [
+      { label: "Biodata", ariaLabel: "Tentang Saya", href: "#about" },
+      { label: "Mata Kuliah", ariaLabel: "Jadwal Mata Kuliah", href: "#about" }
+    ]
+  },
+  {
+    label: "Projects",
+    bgColor: "#2F293A",
+    textColor: "#fff",
+    links: [
+      { label: "Semua Proyek", ariaLabel: "Lihat Semua Proyek", href: "#projects" },
+      { label: "Sertifikat", ariaLabel: "Lihat Sertifikat", href: "#certificates" }
+    ]
+  },
+  {
+    label: "Contact",
+    bgColor: "#2F293A",
+    textColor: "#fff",
+    links: [
+      { label: "Email", ariaLabel: "Kirim Email", href: "mailto:aldipramanaaldi9@gmail.com" }, // GANTI
+      { label: "LinkedIn", ariaLabel: "LinkedIn", href: "https://www.linkedin.com/in/aldi-pramana-732828430/" }, // GANTI
+      { label: "Instagram", ariaLabel: "Instagram", href: "https://www.instagram.com/all_prmn14/" } // GANTI
+    ]
+  }
 ];
 
 export default function Navbar() {
   return (
-    <nav 
-      className="navbar" 
-      style={{ 
-        position: 'fixed', 
-        top: 0, 
-        left: 0,
-        width: '100%', 
-        zIndex: 100, 
-        display: 'flex', 
-        justifyContent: 'space-between', 
-        alignItems: 'center', 
-        padding: '1rem 5%',
-        backgroundColor: 'rgba(15, 23, 42, 0.8)', // Background gelap transparan
-        backdropFilter: 'blur(10px)' // Efek kaca
-      }}
-    >
-      {/* Logo di Kiri */}
-      <div className="logo" style={{ color: '#F8FAFC', fontWeight: 'bold', fontSize: '1.2rem' }}>
-        WELCOME TO MY PORTFOLIO
-      </div>
-
-      {/* GooeyNav di Kanan */}
-      <div style={{ height: '60px', position: 'relative', minWidth: '350px' }}>
-        <GooeyNav
-          items={items}
-          particleCount={15}
-          particleDistances={[100, 10]}
-          particleR={90}
-          initialActiveIndex={0}
-          animationTime={600}
-          timeVariance={300}
-          colors={[1, 2, 3, 1, 2, 3, 1, 4]}
-        />
-      </div>
-    </nav>
-  )
+    <CardNav
+      logoText="WELCOME TO MY PORTFOLIO"
+      logoAlt="Welcome"
+      items={items}
+      baseColor="#0F172A"
+      menuColor="#F8FAFC"
+      buttonBgColor="#7C3AED"
+      buttonTextColor="#fff"
+      ctaLabel="LinkedIn"
+      ctaHref="https://www.linkedin.com/in/aldi-pramana-732828430/"
+      ease="power3.out"
+    />
+  );
 }
