@@ -7,7 +7,7 @@ const items = [
     bgColor: "#1B1722",
     textColor: "#fff",
     links: [
-      { label: "Biodata", ariaLabel: "Tentang Saya", href: "#about" },
+      { label: "Home", ariaLabel: "Halaman Utama", href: "#home" },
       { label: "Mata Kuliah", ariaLabel: "Jadwal Mata Kuliah", href: "#about" }
     ]
   },

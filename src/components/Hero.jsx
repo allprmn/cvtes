@@ -1,14 +1,26 @@
-import React from 'react'
-import { motion } from 'framer-motion'
+import React, { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import MoltenMetal from './MoltenMetal'
 import StrokeText from './StrokeText'
 import profileImage from '../assets/profile.png'
 import styles from './Hero.module.css'
 
 export default function Hero() {
-  return (
-    <header style={{ position: 'relative', overflow: 'hidden', minHeight: '100dvh', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#0F172A', paddingTop: '4rem', paddingBottom: '2rem' }}>
+  const [showModal, setShowModal] = useState(false);
 
+  const handleConfirmDownload = () => {
+    const link = document.createElement('a');
+    link.href = '/cv.pdf';
+    link.download = 'cv.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setShowModal(false);
+  };
+
+  return (
+    <header id="home" style={{ position: 'relative', overflow: 'hidden', minHeight: '100dvh', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#0F172A', paddingTop: '5.5rem', paddingBottom: '2rem' }}>
+      
       <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
         <MoltenMetal
           color1="#6655a9"
@@ -35,8 +47,7 @@ export default function Hero() {
       {/* ================= KONTEN HERO ================= */}
       <div className={styles.heroContent}>
 
-        {/* Sisi Kiri: Teks & Tombol */}
-        <motion.div
+        <motion.div 
           className={styles.textWrapper}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -72,20 +83,18 @@ export default function Hero() {
           </p>
 
           <div className={styles.buttons}>
-            <motion.a
-              href="/cv.pdf"
-              download="/cv.pdf"
+            {/* Tombol Download CV — Sekarang memicu modal */}
+            <motion.button
+              type="button"
+              onClick={() => setShowModal(true)}
               className={styles.cta}
+              style={{ border: 'none', cursor: 'pointer', fontFamily: 'inherit' }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={(e) => {
-                if (!window.confirm("Apakah kamu yakin ingin mengunduh CV saya?")) {
-                  e.preventDefault(); // Batalkan download jika user klik "Cancel"
-                }
-              }}
             >
               Download CV
-            </motion.a>
+            </motion.button>
+
             <motion.a
               href="#certificates"
               className={styles.ctaSecondary}
@@ -126,6 +135,66 @@ export default function Hero() {
         </motion.div>
 
       </div>
+
+      {/* ================= MODAL KONFIRMASI DOWNLOAD CV ================= */}
+      <AnimatePresence>
+        {showModal && (
+          <motion.div
+            className="fixed inset-0 z-[999] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowModal(false)}
+          >
+            <motion.div
+              className="bg-slate-800 border border-slate-700 rounded-2xl max-w-md w-full p-6 md:p-8 shadow-2xl"
+              initial={{ scale: 0.85, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.85, opacity: 0, y: 20 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Ikon Download */}
+              <div className="flex justify-center mb-4">
+                <div className="w-16 h-16 rounded-full bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                </div>
+              </div>
+
+              {/* Judul */}
+              <h3 className="text-xl font-bold text-white text-center mb-2">
+                Unduh CV?
+              </h3>
+
+              {/* Deskripsi */}
+              <p className="text-slate-400 text-center text-sm leading-relaxed mb-6">
+                Kamu akan mengunduh file <span className="text-indigo-400 font-medium">CV-Aldi-Pramana.pdf</span>. File ini berisi riwayat pendidikan, pengalaman, dan keahlian saya.
+              </p>
+
+              {/* Tombol Aksi */}
+              <div className="flex gap-3">
+                <button
+                  onClick={() => setShowModal(false)}
+                  className="flex-1 px-4 py-3 rounded-lg bg-slate-700 hover:bg-slate-600 text-slate-200 font-medium transition-colors"
+                >
+                  Batal
+                </button>
+                <button
+                  onClick={handleConfirmDownload}
+                  className="flex-1 px-4 py-3 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-medium transition-colors"
+                >
+                  Ya, Unduh
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </header>
   )
 }
