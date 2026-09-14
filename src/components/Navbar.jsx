@@ -1,5 +1,7 @@
 import React from 'react';
 import CardNav from './CardNav';
+import { Link } from 'react-router-dom';
+
 
 const items = [
   {
@@ -7,8 +9,9 @@ const items = [
     bgColor: "#1B1722",
     textColor: "#fff",
     links: [
-      { label: "Home", ariaLabel: "Halaman Utama", href: "#home" },
-      { label: "Mata Kuliah", ariaLabel: "Jadwal Mata Kuliah", href: "#about" }
+      { label: "Home", href: "/" },        // Mengarah ke halaman Home
+      { label: "Profil", href: "/profil" }, // Mengarah ke halaman Profil
+      { label: "Projects", href: "/#projects" }, // Contoh jika ingin kembali ke section
     ]
   },
   {

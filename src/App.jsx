@@ -1,22 +1,19 @@
+// src/App.jsx
 import React from 'react'
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import Education from './components/Education'
-import About from './components/About'
-import Certificates from './components/Certificates'
-import Footer from './components/Footer'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
+import Profil from './pages/Profil'
+import PengingatTugas from './pages/PengingatTugas';
 
 export default function App() {
   return (
-    <>
-      <Navbar />
-      <main>
-        <Hero />
-        <Education />
-        <Certificates />
-        <About />
-      </main>
-      <Footer />
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/profil" element={<Profil />} />
+        <Route path="/pengingat-tugas" element={<PengingatTugas />} /> 
+        {/* Kamu bisa menambahkan rute lain di sini nanti */}
+      </Routes>
+    </Router>
   )
 }
