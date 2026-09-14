@@ -98,3 +98,7 @@ footer {
     @apply bg-background text-foreground; }
   html {
     @apply font-sans; } }
+
+    html {
+  scroll-behavior: smooth;
+}
