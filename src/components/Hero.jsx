@@ -4,6 +4,8 @@ import MoltenMetal from './MoltenMetal'
 import StrokeText from './StrokeText'
 import profileImage from '../assets/profile.png'
 import styles from './Hero.module.css'
+import BlurText from "./BlurText";
+
 
 export default function Hero() {
   const [showModal, setShowModal] = useState(false);
@@ -17,6 +19,10 @@ export default function Hero() {
     document.body.removeChild(link);
     setShowModal(false);
   };
+
+  const handleAnimationComplete = () => {
+  console.log('Animation completed!');
+};
 
   return (
     <header id="home" style={{ position: 'relative', overflow: 'hidden', minHeight: '100dvh', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#0F172A', paddingTop: '5.5rem', paddingBottom: '2rem' }}>
@@ -75,12 +81,19 @@ export default function Hero() {
             </span>
           </h1>
 
-          <p className={styles.description}>
-            Pengembangan aplikasi dan web yang berfokus pada desain mobile,
+          <div className={styles.description}>
+            <BlurText
+            text="Pengembangan aplikasi dan web yang berfokus pada desain mobile,
             performance tinggi, dan kolaboratif teknologi terkini. Berpengalaman
             membangun aplikasi mobile, website interaktif, serta mengintegrasikan
-            teknologi digital untuk memastikan inovasi yang bermutu.
-          </p>
+            teknologi digital untuk memastikan inovasi yang bermutu."
+            delay={100}
+            animateBy="words"
+            direction="top"
+            onAnimationComplete={handleAnimationComplete}
+            className="text-base md:text-lg text-slate-300 leading-relaxed text-left"
+          />
+          </div>
 
           <div className={styles.buttons}>
             {/* Tombol Download CV — Sekarang memicu modal */}

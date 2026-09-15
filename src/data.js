@@ -1,5 +1,7 @@
-// src/data.js
-
+import imgSD from './assets/educations/sd.jpg';
+import imgSMP from './assets/educations/smp.jpg';
+import imgMAN from './assets/educations/man.jpg';
+import imgUIN from './assets/educations/uin.jpg';
 
 
 // data riwayat pendidikan
@@ -9,32 +11,32 @@ export const education = [
     institution: "SDN 2 NEGLASARI",
     degree: "MURID",
     year: "2012 - 2018",
-    description: "Awal mla study dan mulai belajar semua dasar dasar dari sebuah pendidikan",
-    icon: "🎓" // bisa pakai emoji atau gambar
+    image: imgSD,
+    link: "https://data-sekolah.zekolah.id/sekolah/sdn-2-neglasari-255481"
   },
   {
     id: 2,
     institution: "SMPN 5 CIBEBER",
     degree: "MURID",
     year: "2018 - 2021",
-    description: "Menjadi ketua osis dan pengurus di ekstrakurikuler pramuka. adalah awal dari dari pembentukan karakter dan keorganisasian",
-    icon: "📚"
+    image: imgSMP,
+    link: "https://smp.sch.id/sekolah/20607865"
   },
   {
     id: 3,
     institution: "MAN 2 LEBAK",
     degree: "MURID Ipa",
     year: "2021 - 2024",
-    description: "Aktif dalam kegiatan ekstrakurikuler robotika dan programming club. Mengikuti beberapa perlombaan Nasional dan Internasional",
-    icon: "🤖"
+    image: imgMAN,
+    link: "https://man2lebak.sch.id/"
   },
   {
     id: 4,
     institution: "UIN SUNAN GUNUNG DJATI BANDUNG",
     degree: "Mahasiswa Teknik Informatika",
     year: "2024 - Sekarang",
-    description: "Sedang menempuh pendidikan sarjana di bidang Teknik Informatika. Fokus pada pengembangan perangkat lunak dan kecerdasan buatan. Aktif dalam komunitas coding kampus.",
-    icon: "💻"
+    image: imgUIN,
+    link: "https://uinsgd.ac.id/"
   }
 ];
 

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import DepthCarousel from './DepthCarousel'; // Sesuaikan path jika ada di folder 'ui'
 import { certificates } from '../data';
+import BlurText from "./BlurText";
+
 
 export default function Certificates() {
   // State untuk menyimpan sertifikat yang sedang diklik (untuk modal)
@@ -13,13 +15,27 @@ export default function Certificates() {
     originalData: cert, // Simpan data asli untuk modal
   }));
 
+  const handleAnimationComplete = () => {
+  console.log('Animation completed!');
+};
+
+
   return (
     <section id="certificates" className="w-full py-20 px-4 bg-slate-900 text-slate-200">
       <div className="max-w-6xl mx-auto">
         
-        <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-4">
-          Sertifikat & Penghargaan
-        </h2>
+         <div className="flex justify-center mb-4">
+          <BlurText
+            text="Sertifikat & Penghargaan"
+            delay={200}
+            animateBy="words"
+            direction="top"
+            onAnimationComplete={handleAnimationComplete}
+            className="text-3xl md:text-4xl font-bold text-white text-center"
+          />
+        </div>
+
+
         <p className="text-center text-slate-400 mb-12">
           Klik pada kartu untuk melihat detail sertifikat
         </p>
