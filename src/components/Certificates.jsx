@@ -26,7 +26,7 @@ export default function Certificates() {
         
          <div className="flex justify-center mb-4">
           <BlurText
-            text="Sertifikat & Penghargaan"
+            text="Licenses & Certifications"
             delay={200}
             animateBy="words"
             direction="top"

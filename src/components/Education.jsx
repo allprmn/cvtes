@@ -1,7 +1,7 @@
 import React from 'react';
 import AccordionGallery from './AccordionGallery'; // Sesuaikan path jika ada di folder 'ui'
 import { education } from '../data';
-import EchoText from './EchoText';
+import BlurText from "./BlurText";
 
 export default function Education() {
   // Konversi data dari data.js ke format AccordionGallery
@@ -11,27 +11,22 @@ export default function Education() {
     link: item.link,
   }));
 
+   const handleAnimationComplete = () => {
+  console.log('Animation completed!');
+};
+
   return (
     <section id="education" className="w-full py-20 px-4 bg-slate-950 text-white">
       <div className="max-w-6xl mx-auto">
 
         <div className="flex justify-center items-center mb-8">
-          <EchoText
-            text="Riwayat Pendidikan"
-            echoes={12}
-            lag={0.24}
-            offset={36}
-            direction="right"
-            fade={0.72}
-            blur={3}
-            tint="#ffffff"
-            mode="both"
-            cursorRadius={320}
-            duration={900}
-            ease="ease-out"
-            fontSize="clamp(2rem, 5vw, 4rem)"
-            fontWeight={800}
-            color="#8b56e7"
+          <BlurText
+            text="Educational Background"
+            delay={200}
+            animateBy="words"
+            direction="top"
+            onAnimationComplete={handleAnimationComplete}
+            className="text-3xl md:text-4xl font-bold text-white text-center"
           />
         </div>
 

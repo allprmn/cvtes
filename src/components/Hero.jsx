@@ -87,7 +87,7 @@ export default function Hero() {
             performance tinggi, dan kolaboratif teknologi terkini. Berpengalaman
             membangun aplikasi mobile, website interaktif, serta mengintegrasikan
             teknologi digital untuk memastikan inovasi yang bermutu."
-            delay={100}
+            delay={60}
             animateBy="words"
             direction="top"
             onAnimationComplete={handleAnimationComplete}

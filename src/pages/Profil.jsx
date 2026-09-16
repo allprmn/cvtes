@@ -5,6 +5,7 @@ import Education from '../components/Education'
 import About from '../components/About'
 import Certificates from '../components/Certificates'
 import Footer from '../components/Footer'
+import MataKuliah from '../components/MataKuliah'
 
 export default function App() {
   return (
@@ -12,9 +13,10 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
+        <About />  
         <Education />
         <Certificates />
-        <About />
+        <MataKuliah />
       </main>
       <Footer />
     </>

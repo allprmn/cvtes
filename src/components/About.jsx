@@ -1,181 +1,87 @@
-import React, { useRef, useState, useEffect } from 'react'
-
-// Data jadwal mata kuliah kamu
-const mataKuliah = [
-  { no: 1, nama: "20100470501024 - Manajemen Basis Data - SMT 5", kelas: "A", sks: 3, ruang: "R.4.09", hari: "Senin", waktu: "09:30:00 s/d 12:00:00", dosen: "- Wildan Budiawan Zulfikar S.T., M.Kom." },
-  { no: 2, nama: "20100470501026 - Jaringan Komputer - SMT 5", kelas: "A", sks: 3, ruang: "R.4.11", hari: "Rabu", waktu: "09:30:00 s/d 12:00:00", dosen: "- Cecep Nurul Alam M.T." },
-  { no: 3, nama: "20100470501028 - Pengembangan Aplikasi Mobile - SMT 5", kelas: "A", sks: 3, ruang: "R.4.01", hari: "Kamis", waktu: "09:30:00 s/d 12:00:00", dosen: "- H. Aldy Rialdy Atmadja M.T" },
-  { no: 4, nama: "20100470501030 - Pengembangan Aplikasi Web - SMT 5", kelas: "A", sks: 3, ruang: "R.4.01", hari: "Kamis", waktu: "15:30:00 s/d 18:00:00", dosen: "- Muhammad Deden Firdaus ST, M.Kom" },
-  { no: 5, nama: "20100470501032 - Interaksi Manusia dan Komputer - SMT 5", kelas: "A", sks: 3, ruang: "R.4.01", hari: "Rabu", waktu: "07:00:00 s/d 09:30:00", dosen: "- Dr. Cepy Slamet S.T., M.Kom." },
-  { no: 6, nama: "20100470501033 - Intelegensia Buatan - SMT 5", kelas: "A", sks: 3, ruang: "R.4.10", hari: "Selasa", waktu: "15:30:00 s/d 18:00:00", dosen: "- Jumadi ST., M.Cs." },
-  { no: 7, nama: "20100470501034 - Manajemen Proyek Perangkat Lunak - SMT 5", kelas: "A", sks: 3, ruang: "R.4.01", hari: "Senin", waktu: "07:00:00 s/d 09:30:00", dosen: "- Agung Wahana S.E., M.T." },
-  { no: 8, nama: "20100470503006 - Kewirausahaan & Etika Bisnis - SMT 7", kelas: "A", sks: 2, ruang: "R.4.11", hari: "Selasa", waktu: "10:20:00 s/d 12:00:00", dosen: "- Adam Farooqi ST., MT." },
-]
+import React from 'react';
+import { motion } from 'framer-motion';
+import Lanyard from './Lanyard';
+import fotoDepan from '../assets/profil2.png';
+import logoBelakang from '../assets/logo.png';
 
 export default function About() {
-  const scrollRef = useRef(null)
-  const [canScrollLeft, setCanScrollLeft] = useState(false)
-  const [canScrollRight, setCanScrollRight] = useState(true)
+    return (
+        <section
+            id="about"
+            className="w-full py-20 px-4 bg-slate-950 text-slate-200 overflow-hidden"
+        >
+            <div className="max-w-6xl mx-auto">
 
-  // Fungsi untuk cek posisi scroll dan update tombol panah
-  const checkScroll = () => {
-    const el = scrollRef.current
-    if (!el) return
-    setCanScrollLeft(el.scrollLeft > 0)
-    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 1)
-  }
+                {/* Kartu Container dengan Border Gradasi Ungu */}
+                <div className="relative rounded-3xl border-2 border-purple-600/50 bg-gradient-to-br from-slate-900 to-slate-950 p-6 md:p-12 shadow-[0_0_60px_rgba(124,58,237,0.3)]">
 
-  useEffect(() => {
-    checkScroll()
-    const el = scrollRef.current
-    if (el) {
-      el.addEventListener('scroll', checkScroll)
-      window.addEventListener('resize', checkScroll)
-    }
-    return () => {
-      if (el) el.removeEventListener('scroll', checkScroll)
-      window.removeEventListener('resize', checkScroll)
-    }
-  }, [])
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
 
-  const scrollByAmount = (direction) => {
-    const el = scrollRef.current
-    if (!el) return
-    const amount = el.clientWidth * 0.7 // 70% dari lebar container
-    el.scrollBy({ left: direction * amount, behavior: 'smooth' })
-  }
+                        {/* ================= KOLOM KIRI: TEKS ================= */}
+                        <motion.div
+                            initial={{ opacity: 0, x: -50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8 }}
+                            viewport={{ once: true }}
+                        >
+                            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                                About Me
+                            </h2>
 
-  return (
-    <section id="about" className="w-full py-20 px-4 md:px-10 bg-slate-900 text-slate-200">
-      <div className="max-w-6xl mx-auto">
+                            <p className="text-slate-400 leading-relaxed mb-4">
+                                Saya Aldi Pramana, Mahasiswa Teknik Informatika yang berfokus 
+                                pada perancangan dan pengembangan produk digital. Memiliki 
+                                kombinasi keahlian di bidang UI/UX & Desain Grafis, 
+                                Web Development (Java & PHP), serta Digital Content 
+                                Creation (Image & Video Editing).
+                            </p>
 
-        {/* Bio Singkat */}
-        <h2 className="text-3xl font-bold text-white mb-6">Tentang Saya</h2>
-        <p className="text-lg text-slate-400 leading-relaxed max-w-3xl mb-12">
-          Saya adalah seorang pengembang aplikasi dan web yang berfokus pada desain mobile,
-          performa tinggi, dan kolaborasi teknologi terkini. Berpengalaman membangun
-          aplikasi mobile, website interaktif, serta mengintegrasikan teknologi digital.
-        </p>
+                            <p className="text-slate-400 leading-relaxed mb-8">
+                                Terbiasa mentransformasikan ide visual menjadi antarmuka
+                                aplikasi yang intuitif serta membangun sistem back-end yang
+                                andal. Selalu antusias untuk mempelajari teknologi baru 
+                                dan berkolaborasi dalam menciptakan solusi digital yang berdampak.
+                            </p>
 
-        {/* Judul Tabel + Tombol Panah */}
-        <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
-          <div>
-            <h3 className="text-2xl font-semibold text-white">Jadwal Mata Kuliah Semester Ini</h3>
-            <p className="text-xs text-slate-500 mt-1 md:hidden">
-              Geser tabel atau klik tombol panah →
-            </p>
-          </div>
+                            {/* Statistik (Angka) */}
+                            <div className="flex gap-12 mb-6">
+                                <div>
+                                    <p className="text-4xl font-bold text-white">-<span className="text-purple-400">+</span></p>
+                                    <p className="text-sm text-slate-400 mt-1">Project Finished</p>
+                                </div>
+                                <div>
+                                    <p className="text-4xl font-bold text-white">-<span className="text-purple-400">+</span></p>
+                                    <p className="text-sm text-slate-400 mt-1">Years of Experience</p>
+                                </div>
+                            </div>
 
-          {/* Tombol Panah (hanya tampil di mobile & tablet) */}
-          <div className="flex gap-2 lg:hidden">
-            <button
-              onClick={() => scrollByAmount(-1)}
-              disabled={!canScrollLeft}
-              aria-label="Geser ke kiri"
-              className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all ${
-                canScrollLeft
-                  ? 'bg-slate-700 border-slate-600 text-white hover:bg-slate-600 cursor-pointer'
-                  : 'bg-slate-800/50 border-slate-800 text-slate-600 cursor-not-allowed'
-              }`}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="15 18 9 12 15 6"></polyline>
-              </svg>
-            </button>
-            <button
-              onClick={() => scrollByAmount(1)}
-              disabled={!canScrollRight}
-              aria-label="Geser ke kanan"
-              className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all ${
-                canScrollRight
-                  ? 'bg-indigo-600 border-indigo-500 text-white hover:bg-indigo-700 cursor-pointer'
-                  : 'bg-slate-800/50 border-slate-800 text-slate-600 cursor-not-allowed'
-              }`}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
-            </button>
-          </div>
-        </div>
+                            <p className="text-slate-500 italic text-sm">
+                                Working with heart, creating with mind.
+                            </p>
+                        </motion.div>
 
-        {/* Container Tabel dengan Scroll Horizontal */}
-        <div className="relative">
-          {/* Gradient Fade Kiri (hanya muncul saat bisa scroll kiri) */}
-          {canScrollLeft && (
-            <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-slate-900 to-transparent z-10" />
-          )}
-          {/* Gradient Fade Kanan (hanya muncul saat bisa scroll kanan) */}
-          {canScrollRight && (
-            <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-slate-900 to-transparent z-10" />
-          )}
+                        {/* ================= KOLOM KANAN: LANYARD 3D ================= */}
+                        <motion.div
+                            className="h-[500px] md:h-[600px] w-full relative"
+                            initial={{ opacity: 0, x: 50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                            viewport={{ once: true }}
+                        >
+                            <Lanyard
+                                position={[0, 0, 20]}
+                                gravity={[0, -40, 0]}
+                                frontImage={fotoDepan}
+                                backImage={logoBelakang}
+                                imageFit="cover"
+                                lanyardWidth={1}
+                            />
+                        </motion.div>
 
-          <div
-            ref={scrollRef}
-            className="w-full overflow-x-auto rounded-xl border border-slate-700 bg-slate-800 custom-scrollbar"
-          >
-            <table className="min-w-[900px] text-left text-sm whitespace-nowrap">
-              {/* Header Tabel */}
-              <thead className="bg-slate-700 text-slate-300 uppercase text-xs font-semibold tracking-wider">
-                <tr>
-                  <th className="px-6 py-4">No</th>
-                  <th className="px-6 py-4">Matakuliah</th>
-                  <th className="px-6 py-4">Kelas</th>
-                  <th className="px-6 py-4 text-center">SKS</th>
-                  <th className="px-6 py-4">Ruang</th>
-                  <th className="px-6 py-4">Hari</th>
-                  <th className="px-6 py-4">Waktu</th>
-                  <th className="px-6 py-4">Dosen</th>
-                </tr>
-              </thead>
+                    </div>
+                </div>
 
-              {/* Isi Tabel */}
-              <tbody className="divide-y divide-slate-700">
-                {mataKuliah.map((item, index) => (
-                  <tr
-                    key={item.no}
-                    className={`transition-colors hover:bg-slate-700/50 ${index % 2 === 0 ? 'bg-slate-800' : 'bg-slate-800/50'}`}
-                  >
-                    <td className="px-6 py-4 text-slate-300">{item.no}</td>
-                    <td className="px-6 py-4 font-medium text-white">{item.nama}</td>
-                    <td className="px-6 py-4 text-slate-300">{item.kelas}</td>
-                    <td className="px-6 py-4 text-center text-slate-300">{item.sks}</td>
-                    <td className="px-6 py-4 text-slate-300">{item.ruang}</td>
-                    <td className="px-6 py-4 text-slate-300">{item.hari}</td>
-                    <td className="px-6 py-4 text-slate-300">{item.waktu}</td>
-                    <td className="px-6 py-4 text-slate-400">{item.dosen}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-      </div>
-
-      {/* CSS Custom untuk Scrollbar */}
-      <style>{`
-        .custom-scrollbar::-webkit-scrollbar {
-          height: 8px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-          background: #1e293b;
-          border-radius: 0 0 12px 12px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: #7C3AED;
-          border-radius: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: #6D28D9;
-        }
-        /* Firefox */
-        .custom-scrollbar {
-          scrollbar-width: thin;
-          scrollbar-color: #7C3AED #1e293b;
-          -webkit-overflow-scrolling: touch;
-        }
-      `}</style>
-    </section>
-  )
+            </div>
+        </section>
+    );
 }

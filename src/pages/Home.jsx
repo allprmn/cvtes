@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Plasma from '../components/Plasma';
-import About from '../components/About';
+import About from '../components/MataKuliah';
 
 export default function Home() {
   return (
