@@ -5,6 +5,8 @@ import StrokeText from './StrokeText'
 import profileImage from '../assets/profile.png'
 import styles from './Hero.module.css'
 import BlurText from "./BlurText";
+import ProfileCard from './ProfileCard';
+import SpecularButton from './SpecularButton';
 
 
 export default function Hero() {
@@ -21,12 +23,12 @@ export default function Hero() {
   };
 
   const handleAnimationComplete = () => {
-  console.log('Animation completed!');
-};
+    console.log('Animation completed!');
+  };
 
   return (
     <header id="home" style={{ position: 'relative', overflow: 'hidden', minHeight: '100dvh', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#0F172A', paddingTop: '5.5rem', paddingBottom: '2rem' }}>
-      
+
       <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
         <MoltenMetal
           color1="#6655a9"
@@ -53,7 +55,7 @@ export default function Hero() {
       {/* ================= KONTEN HERO ================= */}
       <div className={styles.heroContent}>
 
-        <motion.div 
+        <motion.div
           className={styles.textWrapper}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -83,68 +85,88 @@ export default function Hero() {
 
           <div className={styles.description}>
             <BlurText
-            text="Pengembangan aplikasi dan web yang berfokus pada desain mobile,
+              text="Pengembangan aplikasi dan web yang berfokus pada desain mobile,
             performance tinggi, dan kolaboratif teknologi terkini. Berpengalaman
             membangun aplikasi mobile, website interaktif, serta mengintegrasikan
             teknologi digital untuk memastikan inovasi yang bermutu."
-            delay={60}
-            animateBy="words"
-            direction="top"
-            onAnimationComplete={handleAnimationComplete}
-            className="text-base md:text-lg text-slate-300 leading-relaxed text-left"
-          />
+              delay={60}
+              animateBy="words"
+              direction="top"
+              onAnimationComplete={handleAnimationComplete}
+              className="text-base md:text-lg text-slate-300 leading-relaxed text-left"
+            />
           </div>
 
           <div className={styles.buttons}>
-            {/* Tombol Download CV — Sekarang memicu modal */}
-            <motion.button
-              type="button"
+            {/* Tombol Download CV — Memicu modal */}
+            <SpecularButton
+              size="lg"
+              radius={18}
+              tint="#ffffff"
+              tintOpacity={0}
+              blur={0}
+              textColor="#ffffff"
+              lineColor="#a78bfa"
+              baseColor="#7C3AED"
+              intensity={1}
+              shineSize={10}
+              shineFade={40}
+              thickness={1}
+              speed={0.35}
+              followMouse
+              proximity={250}
+              autoAnimate={false}
               onClick={() => setShowModal(true)}
-              className={styles.cta}
-              style={{ border: 'none', cursor: 'pointer', fontFamily: 'inherit' }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
             >
               Download CV
-            </motion.button>
+            </SpecularButton>
 
-            <motion.a
-              href="#certificates"
-              className={styles.ctaSecondary}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            {/* Tombol Lihat Sertifikat — Smooth Scroll ke section */}
+            <SpecularButton
+              size="lg"
+              radius={18}
+              tint="#ffffff"
+              tintOpacity={0}
+              blur={0}
+              textColor="#A78BFA"
+              lineColor="#7C3AED"
+              baseColor="#1e293b"
+              intensity={1}
+              shineSize={10}
+              shineFade={40}
+              thickness={1}
+              speed={0.35}
+              followMouse
+              proximity={250}
+              autoAnimate={false}
+              onClick={() => document.getElementById('certificates')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Lihat Sertifikat
-            </motion.a>
+            </SpecularButton>
           </div>
         </motion.div>
 
-        {/* Sisi Kanan: Foto Profil */}
         <motion.div
-          className={styles.avatarWrapper}
-          whileHover={{
-            scale: 1.05,
-            rotate: 2,
-            boxShadow: '0 0 30px rgba(124, 58, 237, 0.6)',
-            transition: { duration: 0.3 },
-          }}
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
         >
-          <div className={styles.avatarBorder}>
-            <motion.img
-              src={profileImage}
-              alt="Aldi Pramana"
-              className={styles.avatarImage}
-              whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
-              animate={{
-                boxShadow: [
-                  '0 0 20px rgba(124,58,237,0.2)',
-                  '0 0 40px rgba(124,58,237,0.6)',
-                  '0 0 20px rgba(124,58,237,0.2)',
-                ],
-                transition: { duration: 3, repeat: Infinity, ease: 'easeInOut' },
-              }}
-            />
-          </div>
+          <ProfileCard
+            name="Aldi Pramana"
+            title="Fullstack Developer"
+            handle="allprmncvv"
+            status="Online"
+            contactText="Hubungi Saya"
+            avatarUrl={profileImage}
+            showUserInfo={false}
+            enableTilt={true}
+            enableMobileTilt={false}
+            onContactClick={() => console.log('Contact clicked')}
+            behindGlowColor="rgba(125, 190, 255, 0.67)"
+            iconUrl="/assets/demo/iconpattern.png"
+            behindGlowEnabled
+            innerGradient="linear-gradient(145deg,#60496e8c 0%,#71C4FF44 100%)"
+          />
         </motion.div>
 
       </div>

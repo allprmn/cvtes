@@ -1,11 +1,12 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { GoArrowUpRight } from 'react-icons/go';
+import SpecularButton from './SpecularButton';
 
 const CardNav = ({
   logo,
   logoAlt = 'Logo',
-  logoText,              // <-- Baru: untuk menampilkan teks sebagai logo
+  logoText,
   items,
   className = '',
   ease = 'power3.out',
@@ -184,13 +185,29 @@ const CardNav = ({
           </div>
 
           {/* ============ TOMBOL CTA KANAN ============ */}
-          <a
-            href={ctaHref}
-            className="card-nav-cta-button hidden md:inline-flex border-0 rounded-[calc(0.75rem-0.2rem)] px-4 items-center h-full font-medium cursor-pointer transition-colors duration-300 no-underline"
-            style={{ backgroundColor: buttonBgColor, color: buttonTextColor }}
-          >
-            {ctaLabel}
-          </a>
+          <div className="hidden md:flex items-center h-full">
+            <SpecularButton
+              size="md"
+              radius={10}
+              tint="#ffffff"
+              tintOpacity={0}
+              blur={0}
+              textColor={buttonTextColor || '#ffffff'}
+              lineColor="#a78bfa"
+              baseColor={buttonBgColor || '#7C3AED'}
+              intensity={1}
+              shineSize={8}
+              shineFade={30}
+              thickness={1}
+              speed={0.35}
+              followMouse
+              proximity={150}
+              autoAnimate={false}
+              onClick={() => window.open(ctaHref, '_blank', 'noopener,noreferrer')}
+            >
+              {ctaLabel}
+            </SpecularButton>
+          </div>
         </div>
 
         <div
